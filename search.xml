@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>practice</title>
+      <link href="/2019/08/18/practice-1/"/>
+      <url>/2019/08/18/practice-1/</url>
+      
+        <content type="html"><![CDATA[<h2 id="test1-blockquotes"><a href="#test1-blockquotes" class="headerlink" title="test1-blockquotes"></a>test1-blockquotes</h2><blockquote><p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,<br>consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.<br>Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p><p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse<br>id sem consectetuer libero luctus adipiscing.</p></blockquote><h2 id="test2"><a href="#test2" class="headerlink" title="test2"></a>test2</h2><blockquote><p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,<br>consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.<br>Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p></blockquote><blockquote><p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse<br>id sem consectetuer libero luctus adipiscing.</p></blockquote><h2 id="test3"><a href="#test3" class="headerlink" title="test3"></a>test3</h2><blockquote><h3 id="这是一个标题。"><a href="#这是一个标题。" class="headerlink" title="这是一个标题。"></a>这是一个标题。</h3><ol><li>这是第一行列表项。</li><li>这是第二行列表项。</li></ol><p>给出一些例子代码：</p><pre><code>return shell_exec(&quot;echo $input | $markdown_script&quot;);</code></pre></blockquote><h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><ul><li>Red</li><li>Green</li><li>Blue</li></ul><ul><li>Red</li><li>Green</li><li>Blue</li></ul><ul><li>Red</li><li>Green</li><li>Blue</li></ul><ol><li><p>Bird</p></li><li><p>McHale</p></li><li><p>Parish</p></li><li><p>Bird</p></li><li><p>McHale</p></li><li><p>Parish</p></li></ol><ol start="3"><li>Bird</li><li>McHale</li><li>Parish</li></ol><h2 id="list-tab"><a href="#list-tab" class="headerlink" title="list-tab"></a>list-tab</h2><ul><li><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.<br>Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,<br>viverra nec, fringilla in, laoreet vitae, risus.</p></li><li><p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit.<br>Suspendisse id sem consectetuer libero luctus adipiscing.</p></li><li><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.<br>Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,<br>viverra nec, fringilla in, laoreet vitae, risus.</p></li><li><p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit.<br>Suspendisse id sem consectetuer libero luctus adipiscing.</p></li></ul><ol><li><p>This is a list item with two paragraphs. Lorem ipsum dolor<br>sit amet, consectetuer adipiscing elit. Aliquam hendrerit<br>mi posuere lectus.</p><p>Vestibulum enim wisi, viverra nec, fringilla in, laoreet<br>vitae, risus. Donec sit amet nisl. Aliquam semper ipsum<br>sit amet velit.</p></li><li><p>Suspendisse id sem consectetuer libero luctus adipiscing.</p></li></ol><ul><li><p>This is a list item with two paragraphs.</p><p>This is the second paragraph in the list item. You’re<br>only required to indent the first line. Lorem ipsum dolor<br>sit amet, consectetuer adipiscing elit.</p></li><li><p>Another item in the same list.</p></li><li><p>A list item with a blockquote:</p><blockquote><p>This is a blockquote<br>inside a list item.</p></blockquote></li></ul><h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><blockquote><p>hello<br>   print(“hello world!”)</p></blockquote><h2 id="link"><a href="#link" class="headerlink" title="link"></a>link</h2><p>See my <a href="/about/">About</a> page for details.<br>[id]: <a href="http://example.com/" target="_blank" rel="noopener">http://example.com/</a>  “Optional Title Here”</p><h2 id="highlight"><a href="#highlight" class="headerlink" title="highlight"></a>highlight</h2><p><strong>nihao</strong><br><em>nihao</em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> algorithm </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> java </tag>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2019/08/17/hello-world/"/>
       <url>/2019/08/17/hello-world/</url>
