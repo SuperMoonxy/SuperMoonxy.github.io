@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/.com//_posts/%E2%80%9C%E5%89%91%E6%8C%87Offer-%E6%95%B0%E7%BB%84%E2%80%9D/test1.png">
 <meta property="og:image" content="http://yoursite.com/.com//09/14/“剑指Offer-数组”/test1.png">
-<meta property="og:updated_time" content="2019-09-14T08:48:03.298Z">
+<meta property="og:updated_time" content="2019-09-14T11:20:50.005Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="“剑指Offer-数组”">
 <meta name="twitter:description" content="题目一： 找出数组中重复的数字在一个长度为n的数组里所有的数字都在0～n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了,也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。例如，如果输入长度为7的数组{2,3,1,0,2,5,3},那么对应的输出是重复的数字2或者3。 思路： 使用哈希表。 如果哈希表里没有这个数字，就把它加入哈希表，如果哈希表里已经存在该数字，就找到一个重">
@@ -366,6 +366,25 @@
 
 </li>
 </ul>
+<h2 id="题目三：-二维数组中的查找"><a href="#题目三：-二维数组中的查找" class="headerlink" title="题目三： 二维数组中的查找"></a>题目三： 二维数组中的查找</h2><p>在一个二维数组中，<span style="border-bottom:2px dashed green;">每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序</span>。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<h3 id="思路：-2"><a href="#思路：-2" class="headerlink" title="思路："></a>思路：</h3><p>利用二维数组是一个特殊有序的二维数组，通过查找一个数不断缩小查找范围的思想（类似二分查找的思想），选择中间值，比较然后缩小范围。<br>中间值：一位数组通常是折半。二维数组可以找右上角，左边的数字都小于右上角数字，下边的数字都大于右上角数字。</p>
+<ul>
+<li><p>选取数组中右上角的数字。</p>
+</li>
+<li><p>如果该数字等于要查找的数字，则查找过程结束；</p>
+</li>
+<li><p>如果该数字大于要查找的数字，则剔除这个数字所在的列；</p>
+</li>
+<li><p>如果该数字小于要查找的数字，则剔除这个数字所在的行。</p>
+</li>
+<li><p>C++代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> *matrix, <span class="keyword">int</span> rows, <span class="keyword">int</span> cols, <span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">bool</span> found = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">int</span> row = <span class="number">0</span>, col = cols <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span>(row &lt; rows &amp;&amp; col &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(matrix[row*cols + col] == num)</span><br><span class="line">		&#123;</span><br><span class="line">			flag = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(matrix[row*cols+col] &gt; num)</span><br><span class="line">		col--;                                             <span class="comment">//剔除所在列</span></span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		row++;                                           <span class="comment">//剔除所在行</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> found;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>-Python代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">(matrix,num)</span>:</span></span><br><span class="line">    row = <span class="number">0</span></span><br><span class="line">    col = len(matrix[<span class="number">0</span>])<span class="number">-1</span></span><br><span class="line">    <span class="keyword">if</span> matrix == <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">while</span> row &lt; len(matrix) <span class="keyword">and</span> col &gt;=<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> matrix[row][col] == num:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">elif</span> matrix[row][col] &gt; num:</span><br><span class="line">            col -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            row += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -377,7 +396,7 @@
         <p><span>本文标题:</span><a href="/2019/09/14/“剑指Offer-数组”/">“剑指Offer-数组”</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">赵新月 Xinyue</a></p>
         <p><span>发布时间:</span>2019-09-14, 15:15:50</p>
-        <p><span>最后更新:</span>2019-09-14, 16:48:03</p>
+        <p><span>最后更新:</span>2019-09-14, 19:20:50</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/09/14/“剑指Offer-数组”/" title="“剑指Offer-数组”">http://yoursite.com/2019/09/14/“剑指Offer-数组”/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/09/14/“剑指Offer-数组”/　　作者: 赵新月 Xinyue" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -413,7 +432,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目一：-找出数组中重复的数字"><span class="toc-number">1.</span> <span class="toc-text">题目一： 找出数组中重复的数字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#思路："><span class="toc-number">1.1.</span> <span class="toc-text">思路：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目二：不修改数组找出重复的数字"><span class="toc-number">2.</span> <span class="toc-text">题目二：不修改数组找出重复的数字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#思路：-1"><span class="toc-number">2.1.</span> <span class="toc-text">思路：</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目一：-找出数组中重复的数字"><span class="toc-number">1.</span> <span class="toc-text">题目一： 找出数组中重复的数字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#思路："><span class="toc-number">1.1.</span> <span class="toc-text">思路：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目二：不修改数组找出重复的数字"><span class="toc-number">2.</span> <span class="toc-text">题目二：不修改数组找出重复的数字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#思路：-1"><span class="toc-number">2.1.</span> <span class="toc-text">思路：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目三：-二维数组中的查找"><span class="toc-number">3.</span> <span class="toc-text">题目三： 二维数组中的查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#思路：-2"><span class="toc-number">3.1.</span> <span class="toc-text">思路：</span></a></li></ol></li></ol>
         
     </div>
     <style>
