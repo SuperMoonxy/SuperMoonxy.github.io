@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>正则表达式转义自字符在Hive+Shell中的特殊注意</title>
+      <link href="/2019/09/14/hive-shell%E6%AD%A3%E5%88%99%E8%BD%AC%E4%B9%89/"/>
+      <url>/2019/09/14/hive-shell%E6%AD%A3%E5%88%99%E8%BD%AC%E4%B9%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="hive中"><a href="#hive中" class="headerlink" title="hive中"></a>hive中</h2><ul><li>正则表达式的转移字符为<em>双斜线“\\”</em></li><li>spilt(string str, string pat),分割符pat为正则表达式<ul><li>待分割字符串：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> positions <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure></li></ul></li></ul><blockquote><p>使用分割符“|”分割开</p></blockquote><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(positions,<span class="string">'|'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure><p>发现，“|”也作为列表的一部分。这是因为，之间使用‘|’被默认为正则表达式中的或，而不会被作为分隔符使用，这时，分隔符为空，所以split函数将字段<em>positions</em>中的单个字符全部分隔开。</p><blockquote><p>使用“\\”转义字符</p></blockquote><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(positions,<span class="string">'\\|'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure><blockquote><p>在“[]”中拼接处字符串<br> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(positions,<span class="string">'[|]'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure></p></blockquote><h2 id="转义“转义字符”"><a href="#转义“转义字符”" class="headerlink" title="转义“转义字符”"></a>转义“转义字符”</h2><ul><li>有时候，在一些特殊情况下，需要对’&#39;进行转义，会出现两个’\\‘或者四个’\\\\‘转义字符</li><li></li></ul><ol><li>hive的split函数和正则表达式<blockquote><p>当以“\”作为分隔符的话，那么就需要使用四个斜线“\\”，</p></blockquote><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(<span class="string">'a\b\c'</span>,<span class="string">'\\\\'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure></li></ol><ol start="2"><li>hive语句在shell脚本中执行<blockquote><p>shell中’&#39;是特殊字符，也需要转义，shell的转义字符是一个”&quot;。<br>hive 语句在shell脚本中执行时，就需要由shell转义后，再由hive执行。</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">SQL="</span><br><span class="line">select split(positions,'\\|') from [表名] where [分区条件];</span><br><span class="line">"</span><br><span class="line">echo -e '$&#123;SQL&#125;'</span><br><span class="line">hive -e '$&#123;SQL&#125;'</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> hive </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 正则转义,hive,shell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>统计文件行数</title>
+      <link href="/2019/09/14/%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E8%A1%8C%E6%95%B0/"/>
+      <url>/2019/09/14/%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E8%A1%8C%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<p>今天做一个报表需求，供算法团队使用，想和旧数据比较量级，就学习一些linux的一些语法操作。总结记录，下次直接用。</p><h2 id="使用awk的特殊变量"><a href="#使用awk的特殊变量" class="headerlink" title="使用awk的特殊变量"></a>使用awk的特殊变量</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk '&#123;print NR&#125;' 文件名 | tail -n1</span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk 'END&#123;print NR&#125;' 文件名</span><br></pre></td></tr></table></figure><h2 id="使用grep列出行号"><a href="#使用grep列出行号" class="headerlink" title="使用grep列出行号"></a>使用grep列出行号</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n '' 文件名 | awk -F : 'print $1' | tail -n1</span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n '' 文件名 | awk -F : 'END&#123;print $1&#125;'</span><br></pre></td></tr></table></figure><h2 id="使用sed流编辑-n"><a href="#使用sed流编辑-n" class="headerlink" title="使用sed流编辑-n"></a>使用sed流编辑-n</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n '$=' 文件名</span><br></pre></td></tr></table></figure><p>-解释： sed -n ‘$=’, “$”命令到最后一行，”=”打印行号</p><h2 id="使用wc命令"><a href="#使用wc命令" class="headerlink" title="使用wc命令"></a>使用wc命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat 文件名|wc -l</span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wc -l 文件名|awk '&#123;print $1&#125;'</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> practice </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>“剑指Offer-数组”</title>
       <link href="/2019/09/14/%E2%80%9C%E5%89%91%E6%8C%87Offer-%E6%95%B0%E7%BB%84%E2%80%9D/"/>
       <url>/2019/09/14/%E2%80%9C%E5%89%91%E6%8C%87Offer-%E6%95%B0%E7%BB%84%E2%80%9D/</url>
