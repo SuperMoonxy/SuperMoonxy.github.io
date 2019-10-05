@@ -196,7 +196,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer-数组/">剑指Offer, 数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则转义-hive-shell/">正则转义,hive,shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/终端/">终端</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer/">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer-数组/">剑指Offer, 数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则转义-hive-shell/">正则转义,hive,shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/终端/">终端</a></li></ul>
                     </div>
                 </section>
                 
@@ -272,6 +272,88 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-剑指offer-fibonacci数列" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/10/01/剑指offer-fibonacci数列/" class="article-date">
+      <time datetime="2019-10-01T11:43:04.000Z" itemprop="datePublished">2019-10-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/01/剑指offer-fibonacci数列/">剑指Offer-fibonacci数列</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="题目一-：-求Fibonacci数列的第n项"><a href="#题目一-：-求Fibonacci数列的第n项" class="headerlink" title="题目一 ： 求Fibonacci数列的第n项"></a>题目一 ： 求Fibonacci数列的第n项</h2><blockquote>
+<p>写一个函数，输入n，求Fibonacci数列的第n项。</p>
+</blockquote>
+<h3 id="thinking"><a href="#thinking" class="headerlink" title="thinking:"></a>thinking:</h3><blockquote>
+<p>根据Fibonacci数列的定义，我们最先联想到的就是递归函数的使用。在上算法课学习递归时，老师也是通过举Fibonacci的列子来介绍递归。但是，递归方法计算的时间复杂度是以n的指数的方式递增的，当n=100时，计算时间就已经很长了，如果n很大，很可能会爆栈。<br>优化递归的方法，使用<font color="CornflowerBlue"> 循环迭代 </font>消除递归。</p>
+</blockquote>
+<h4 id="方法一：-避免重复计算，从下往上计算"><a href="#方法一：-避免重复计算，从下往上计算" class="headerlink" title="方法一： 避免重复计算，从下往上计算"></a>方法一： 避免重复计算，从下往上计算</h4><p>复杂度：<font color="green"> O(n) </font></p>
+<ul>
+<li>C++:<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> result = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;;</span><br><span class="line">	<span class="keyword">if</span>(n&lt;<span class="number">2</span>)</span><br><span class="line">		<span class="keyword">return</span> result[n];</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> f1 = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> f2 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> fn = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span> ; i &lt;=n ; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		fn = f1+f2;</span><br><span class="line">		f1 = f2;</span><br><span class="line">		f2 = fn;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> fn;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>Python:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span><span class="params">(n)</span>:</span></span><br><span class="line">    a,b=<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;<span class="number">2</span> :</span><br><span class="line">        <span class="keyword">return</span> n</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,n + <span class="number">1</span>):</span><br><span class="line">            a, b = b, a + b</span><br><span class="line">        <span class="keyword">return</span> b</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法二：避免重复计算，使用记录数组"><a href="#方法二：避免重复计算，使用记录数组" class="headerlink" title="方法二：避免重复计算，使用记录数组"></a>方法二：避免重复计算，使用记录数组</h4><h4 id="方法三：矩阵算法"><a href="#方法三：矩阵算法" class="headerlink" title="方法三：矩阵算法"></a>方法三：矩阵算法</h4><p>复杂度：<font color="green"> O(log n) </font></p>
+<h2 id="题目二：青蛙跳台阶问题"><a href="#题目二：青蛙跳台阶问题" class="headerlink" title="题目二：青蛙跳台阶问题"></a>题目二：青蛙跳台阶问题</h2><blockquote>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上n级台阶总共有多少种跳法。<br>我刚看到这道题的时候，没有想到与fibonacci数列的公式相类似。看了书上详细的分析：<br>*<font color="blue">如果只有1级台阶，那显然只有一种跳法。如果有2级台阶，那就有两种跳法：一种是分两次跳，每次跳1级；另一种就是一次跳2级。我们把n级台阶时的跳法看出n的函数，记为f(n)。当n&gt;2时，第一次跳的时候就有两种不同的选择：一是第一次只跳1级，此时跳法数目等于后面剩下的n-1级台阶的跳法数目，即为f(n-1);二是第一次跳2级，此时跳法数目等于后面剩下的n-2级台阶的跳法数目，即为f(n-2)。因此，n级台阶的不同跳法的总数f(n) = f(n-1)+f(n-2)。</font>*</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/算法题/">算法题</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/剑指Offer/">剑指Offer</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-hive-shell正则转义" class="article article-type-post" itemscope itemprop="blogPost">
   

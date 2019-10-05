@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="hive中 正则表达式的转移字符为双斜线“\\” spilt(string str, string pat),分割符pat为正则表达式 待分割字符串：1select positions from [表名] where [分区条件];       使用分割符“|”分割开  1select split(positions,&apos;|&apos;) from [表名] where [分区条件];  发现，“|”也作为列">
-<meta name="keywords" content="正则转义,hive,shell">
+<meta name="description" content="题目一 ： 求Fibonacci数列的第n项 写一个函数，输入n，求Fibonacci数列的第n项。  thinking: 根据Fibonacci数列的定义，我们最先联想到的就是递归函数的使用。在上算法课学习递归时，老师也是通过举Fibonacci的列子来介绍递归。但是，递归方法计算的时间复杂度是以n的指数的方式递增的，当n=100时，计算时间就已经很长了，如果n很大，很可能会爆栈。优化递归的方法">
+<meta name="keywords" content="剑指Offer">
 <meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式转义自字符在Hive+Shell中的特殊注意">
-<meta property="og:url" content="http://yoursite.com/2019/09/14/hive-shell正则转义/index.html">
+<meta property="og:title" content="剑指Offer-fibonacci数列">
+<meta property="og:url" content="http://yoursite.com/2019/10/01/剑指offer-fibonacci数列/index.html">
 <meta property="og:site_name" content="Dora Blog">
-<meta property="og:description" content="hive中 正则表达式的转移字符为双斜线“\\” spilt(string str, string pat),分割符pat为正则表达式 待分割字符串：1select positions from [表名] where [分区条件];       使用分割符“|”分割开  1select split(positions,&apos;|&apos;) from [表名] where [分区条件];  发现，“|”也作为列">
+<meta property="og:description" content="题目一 ： 求Fibonacci数列的第n项 写一个函数，输入n，求Fibonacci数列的第n项。  thinking: 根据Fibonacci数列的定义，我们最先联想到的就是递归函数的使用。在上算法课学习递归时，老师也是通过举Fibonacci的列子来介绍递归。但是，递归方法计算的时间复杂度是以n的指数的方式递增的，当n=100时，计算时间就已经很长了，如果n很大，很可能会爆栈。优化递归的方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-14T09:41:41.125Z">
+<meta property="og:updated_time" content="2019-10-05T12:41:00.524Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="正则表达式转义自字符在Hive+Shell中的特殊注意">
-<meta name="twitter:description" content="hive中 正则表达式的转移字符为双斜线“\\” spilt(string str, string pat),分割符pat为正则表达式 待分割字符串：1select positions from [表名] where [分区条件];       使用分割符“|”分割开  1select split(positions,&apos;|&apos;) from [表名] where [分区条件];  发现，“|”也作为列">
+<meta name="twitter:title" content="剑指Offer-fibonacci数列">
+<meta name="twitter:description" content="题目一 ： 求Fibonacci数列的第n项 写一个函数，输入n，求Fibonacci数列的第n项。  thinking: 根据Fibonacci数列的定义，我们最先联想到的就是递归函数的使用。在上算法课学习递归时，老师也是通过举Fibonacci的列子来介绍递归。但是，递归方法计算的时间复杂度是以n的指数的方式递增的，当n=100时，计算时间就已经很长了，如果n很大，很可能会爆栈。优化递归的方法">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>正则表达式转义自字符在Hive+Shell中的特殊注意 | Dora Blog</title>
+<title>剑指Offer-fibonacci数列 | Dora Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -267,11 +267,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-hive-shell正则转义" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-剑指offer-fibonacci数列" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/09/14/hive-shell正则转义/" class="article-date">
-      <time datetime="2019-09-14T09:23:50.000Z" itemprop="datePublished">2019-09-14</time>
+      <a href="/2019/10/01/剑指offer-fibonacci数列/" class="article-date">
+      <time datetime="2019-10-01T11:43:04.000Z" itemprop="datePublished">2019-10-01</time>
 </a>
 
 
@@ -286,7 +286,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      正则表达式转义自字符在Hive+Shell中的特殊注意
+      剑指Offer-fibonacci数列
     </h1>
   
 
@@ -295,13 +295,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hive/">hive</a>
+    <a class="article-category-link" href="/categories/算法题/">算法题</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则转义-hive-shell/">正则转义,hive,shell</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/剑指Offer/">剑指Offer</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -311,49 +311,25 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="hive中"><a href="#hive中" class="headerlink" title="hive中"></a>hive中</h2><ul>
-<li>正则表达式的转移字符为<em>双斜线“\\”</em></li>
-<li>spilt(string str, string pat),分割符pat为正则表达式<ul>
-<li>待分割字符串：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> positions <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure>
+        <h2 id="题目一-：-求Fibonacci数列的第n项"><a href="#题目一-：-求Fibonacci数列的第n项" class="headerlink" title="题目一 ： 求Fibonacci数列的第n项"></a>题目一 ： 求Fibonacci数列的第n项</h2><blockquote>
+<p>写一个函数，输入n，求Fibonacci数列的第n项。</p>
+</blockquote>
+<h3 id="thinking"><a href="#thinking" class="headerlink" title="thinking:"></a>thinking:</h3><blockquote>
+<p>根据Fibonacci数列的定义，我们最先联想到的就是递归函数的使用。在上算法课学习递归时，老师也是通过举Fibonacci的列子来介绍递归。但是，递归方法计算的时间复杂度是以n的指数的方式递增的，当n=100时，计算时间就已经很长了，如果n很大，很可能会爆栈。<br>优化递归的方法，使用<font color="CornflowerBlue"> 循环迭代 </font>消除递归。</p>
+</blockquote>
+<h4 id="方法一：-避免重复计算，从下往上计算"><a href="#方法一：-避免重复计算，从下往上计算" class="headerlink" title="方法一： 避免重复计算，从下往上计算"></a>方法一： 避免重复计算，从下往上计算</h4><p>复杂度：<font color="green"> O(n) </font></p>
+<ul>
+<li>C++:<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> result = &#123;<span class="number">0</span>,<span class="number">1</span>&#125;;</span><br><span class="line">	<span class="keyword">if</span>(n&lt;<span class="number">2</span>)</span><br><span class="line">		<span class="keyword">return</span> result[n];</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> f1 = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> f2 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> fn = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span> ; i &lt;=n ; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		fn = f1+f2;</span><br><span class="line">		f1 = f2;</span><br><span class="line">		f2 = fn;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> fn;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-</li>
-</ul>
-<blockquote>
-<p>使用分割符“|”分割开</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(positions,<span class="string">'|'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure>
+<p>Python:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span><span class="params">(n)</span>:</span></span><br><span class="line">    a,b=<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;<span class="number">2</span> :</span><br><span class="line">        <span class="keyword">return</span> n</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,n + <span class="number">1</span>):</span><br><span class="line">            a, b = b, a + b</span><br><span class="line">        <span class="keyword">return</span> b</span><br></pre></td></tr></table></figure>
 
-<p>发现，“|”也作为列表的一部分。这是因为，之间使用‘|’被默认为正则表达式中的或，而不会被作为分隔符使用，这时，分隔符为空，所以split函数将字段<em>positions</em>中的单个字符全部分隔开。</p>
-<blockquote>
-<p>使用“\\”转义字符</p>
+<h4 id="方法二：避免重复计算，使用记录数组"><a href="#方法二：避免重复计算，使用记录数组" class="headerlink" title="方法二：避免重复计算，使用记录数组"></a>方法二：避免重复计算，使用记录数组</h4><h4 id="方法三：矩阵算法"><a href="#方法三：矩阵算法" class="headerlink" title="方法三：矩阵算法"></a>方法三：矩阵算法</h4><p>复杂度：<font color="green"> O(log n) </font></p>
+<h2 id="题目二：青蛙跳台阶问题"><a href="#题目二：青蛙跳台阶问题" class="headerlink" title="题目二：青蛙跳台阶问题"></a>题目二：青蛙跳台阶问题</h2><blockquote>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上n级台阶总共有多少种跳法。<br>我刚看到这道题的时候，没有想到与fibonacci数列的公式相类似。看了书上详细的分析：<br>*<font color="blue">如果只有1级台阶，那显然只有一种跳法。如果有2级台阶，那就有两种跳法：一种是分两次跳，每次跳1级；另一种就是一次跳2级。我们把n级台阶时的跳法看出n的函数，记为f(n)。当n&gt;2时，第一次跳的时候就有两种不同的选择：一是第一次只跳1级，此时跳法数目等于后面剩下的n-1级台阶的跳法数目，即为f(n-1);二是第一次跳2级，此时跳法数目等于后面剩下的n-2级台阶的跳法数目，即为f(n-2)。因此，n级台阶的不同跳法的总数f(n) = f(n-1)+f(n-2)。</font>*</p>
 </blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(positions,<span class="string">'\\|'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在“[]”中拼接处字符串<br> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(positions,<span class="string">'[|]'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="转义“转义字符”"><a href="#转义“转义字符”" class="headerlink" title="转义“转义字符”"></a>转义“转义字符”</h2><ul>
-<li>有时候，在一些特殊情况下，需要对’&#39;进行转义，会出现两个’\\‘或者四个’\\\\‘转义字符</li>
-<li></li>
-</ul>
-<ol>
-<li>hive的split函数和正则表达式<blockquote>
-<p>当以“\”作为分隔符的话，那么就需要使用四个斜线“\\”，</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(<span class="string">'a\b\c'</span>,<span class="string">'\\\\'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<ol start="2">
-<li>hive语句在shell脚本中执行<blockquote>
-<p>shell中’&#39;是特殊字符，也需要转义，shell的转义字符是一个”&quot;。<br>hive 语句在shell脚本中执行时，就需要由shell转义后，再由hive执行。</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">SQL="</span><br><span class="line">select split(positions,'\\|') from [表名] where [分区条件];</span><br><span class="line">"</span><br><span class="line">echo -e '$&#123;SQL&#125;'</span><br><span class="line">hive -e '$&#123;SQL&#125;'</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
 
       
     </div>
@@ -362,13 +338,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/09/14/hive-shell正则转义/">正则表达式转义自字符在Hive+Shell中的特殊注意</a></p>
+        <p><span>本文标题:</span><a href="/2019/10/01/剑指offer-fibonacci数列/">剑指Offer-fibonacci数列</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">赵新月 Xinyue</a></p>
-        <p><span>发布时间:</span>2019-09-14, 17:23:50</p>
-        <p><span>最后更新:</span>2019-09-14, 17:41:41</p>
+        <p><span>发布时间:</span>2019-10-01, 19:43:04</p>
+        <p><span>最后更新:</span>2019-10-05, 20:41:00</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/09/14/hive-shell正则转义/" title="正则表达式转义自字符在Hive+Shell中的特殊注意">http://yoursite.com/2019/09/14/hive-shell正则转义/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/09/14/hive-shell正则转义/　　作者: 赵新月 Xinyue" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/10/01/剑指offer-fibonacci数列/" title="剑指Offer-fibonacci数列">http://yoursite.com/2019/10/01/剑指offer-fibonacci数列/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/10/01/剑指offer-fibonacci数列/　　作者: 赵新月 Xinyue" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -380,16 +356,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/10/01/剑指offer-fibonacci数列/">
-                    剑指Offer-fibonacci数列
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/09/14/统计文件行数/">
-                    统计文件行数
+                <a href="/2019/09/14/hive-shell正则转义/">
+                    正则表达式转义自字符在Hive+Shell中的特殊注意
                 </a>
             </div>
         
@@ -401,7 +371,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hive中"><span class="toc-number">1.</span> <span class="toc-text">hive中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#转义“转义字符”"><span class="toc-number">2.</span> <span class="toc-text">转义“转义字符”</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目一-：-求Fibonacci数列的第n项"><span class="toc-number">1.</span> <span class="toc-text">题目一 ： 求Fibonacci数列的第n项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#thinking"><span class="toc-number">1.1.</span> <span class="toc-text">thinking:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法一：-避免重复计算，从下往上计算"><span class="toc-number">1.1.1.</span> <span class="toc-text">方法一： 避免重复计算，从下往上计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法二：避免重复计算，使用记录数组"><span class="toc-number">1.1.2.</span> <span class="toc-text">方法二：避免重复计算，使用记录数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法三：矩阵算法"><span class="toc-number">1.1.3.</span> <span class="toc-text">方法三：矩阵算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目二：青蛙跳台阶问题"><span class="toc-number">2.</span> <span class="toc-text">题目二：青蛙跳台阶问题</span></a></li></ol>
         
     </div>
     <style>
@@ -437,7 +407,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"正则表达式转义自字符在Hive+Shell中的特殊注意　| Dora Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"剑指Offer-fibonacci数列　| Dora Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -457,15 +427,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/10/01/剑指offer-fibonacci数列/" title="上一篇: 剑指Offer-fibonacci数列">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/09/14/统计文件行数/" title="下一篇: 统计文件行数">
+            <a href="/2019/09/14/hive-shell正则转义/" title="下一篇: 正则表达式转义自字符在Hive+Shell中的特殊注意">
                 <i class="fa fa-angle-right"></i>
             </a>
         
