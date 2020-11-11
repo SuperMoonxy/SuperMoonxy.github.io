@@ -196,7 +196,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyspark/">Pyspark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer/">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer-数组/">剑指Offer, 数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则转义-hive-shell/">正则转义,hive,shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法题/">算法题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/终端/">终端</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyspark/">Pyspark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前后端接口/">前后端接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer/">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer-数组/">剑指Offer, 数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则转义-hive-shell/">正则转义,hive,shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法题/">算法题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/终端/">终端</a></li></ul>
                     </div>
                 </section>
                 
@@ -272,6 +272,112 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-hive-shell正则转义" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/09/14/hive-shell正则转义/" class="article-date">
+      <time datetime="2019-09-14T09:23:50.000Z" itemprop="datePublished">2019-09-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/14/hive-shell正则转义/">正则表达式转义自字符在Hive+Shell中的特殊注意</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="hive中"><a href="#hive中" class="headerlink" title="hive中"></a>hive中</h2><ul>
+<li>正则表达式的转移字符为<em>双斜线“\\”</em></li>
+<li>spilt(string str, string pat),分割符pat为正则表达式<ul>
+<li>待分割字符串：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> positions <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>使用分割符“|”分割开</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(positions,<span class="string">'|'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure>
+
+<p>发现，“|”也作为列表的一部分。这是因为，之间使用‘|’被默认为正则表达式中的或，而不会被作为分隔符使用，这时，分隔符为空，所以split函数将字段<em>positions</em>中的单个字符全部分隔开。</p>
+<blockquote>
+<p>使用“\\”转义字符</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(positions,<span class="string">'\\|'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在“[]”中拼接处字符串<br> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(positions,<span class="string">'[|]'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="转义“转义字符”"><a href="#转义“转义字符”" class="headerlink" title="转义“转义字符”"></a>转义“转义字符”</h2><ul>
+<li>有时候，在一些特殊情况下，需要对’&#39;进行转义，会出现两个’\\‘或者四个’\\\\‘转义字符</li>
+<li></li>
+</ul>
+<ol>
+<li>hive的split函数和正则表达式<blockquote>
+<p>当以“\”作为分隔符的话，那么就需要使用四个斜线“\\”，</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(<span class="string">'a\b\c'</span>,<span class="string">'\\\\'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<ol start="2">
+<li>hive语句在shell脚本中执行<blockquote>
+<p>shell中’&#39;是特殊字符，也需要转义，shell的转义字符是一个”&quot;。<br>hive 语句在shell脚本中执行时，就需要由shell转义后，再由hive执行。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">SQL="</span><br><span class="line">select split(positions,'\\|') from [表名] where [分区条件];</span><br><span class="line">"</span><br><span class="line">echo -e '$&#123;SQL&#125;'</span><br><span class="line">hive -e '$&#123;SQL&#125;'</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/hive/">hive</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则转义-hive-shell/">正则转义,hive,shell</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-统计文件行数" class="article article-type-post" itemscope itemprop="blogPost">
   

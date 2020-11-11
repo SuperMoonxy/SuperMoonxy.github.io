@@ -196,7 +196,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyspark/">Pyspark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer/">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer-数组/">剑指Offer, 数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则转义-hive-shell/">正则转义,hive,shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法题/">算法题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/终端/">终端</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyspark/">Pyspark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前后端接口/">前后端接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer/">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer-数组/">剑指Offer, 数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则转义-hive-shell/">正则转义,hive,shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法题/">算法题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/终端/">终端</a></li></ul>
                     </div>
                 </section>
                 
@@ -272,6 +272,96 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-qs与json序列化的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/11/10/qs与json序列化的区别/" class="article-date">
+      <time datetime="2020-11-10T03:01:55.000Z" itemprop="datePublished">2020-11-10</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/10/qs与json序列化的区别/">qs与json序列化的区别</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>​    在开发vue项目的时候，发现需要使用不同的序列化函数才能成功联通后端。所以我查找了一些相关资料，记录下来，用于以后工作查阅。</p>
+<h4 id="前端请求格式："><a href="#前端请求格式：" class="headerlink" title="前端请求格式："></a>前端请求格式：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">	url: Url.importRules,</span><br><span class="line">	method: <span class="string">'post'</span>,</span><br><span class="line">	headers: &#123;</span><br><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  data: <span class="built_in">JSON</span>.stringify(ws)  <span class="comment">// 使用json.stringfy序列化方法</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">  url: Url.getResultUrl,</span><br><span class="line">  method: <span class="string">'post'</span>,</span><br><span class="line">  headers: &#123;</span><br><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  data: qs.stringify(postdata)    <span class="comment">//使用qs.stringfy序列化方法</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="关于q-s与json的区别"><a href="#关于q-s与json的区别" class="headerlink" title="关于q s与json的区别"></a>关于q s与json的区别</h4><blockquote>
+<p>qs可以通过<strong>npm install qs</strong>命令进行安装。而qs.stringfy()将对象序列化为url的形式，以&amp;进行拼接。</p>
+<p>json则将对象序列化为json格式，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> a = &#123;<span class="attr">name</span>:<span class="string">'hehe'</span>,<span class="attr">age</span>:<span class="number">10</span>&#125;;</span><br><span class="line">&gt;  qs.stringify(a)</span><br><span class="line">&gt; <span class="comment">// 'name=hehe&amp;age=10'</span></span><br><span class="line">&gt; <span class="built_in">JSON</span>.stringify(a)</span><br><span class="line">&gt; <span class="comment">// '&#123;"name":"hehe","age":10&#125;'</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="qs的类型"><a href="#qs的类型" class="headerlink" title="qs的类型"></a>qs的类型</h5><blockquote>
+<p> qs分为三种类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; qs.stringify(&#123;<span class="attr">ids</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;, &#123;<span class="attr">arrayFormat</span>: ‘indices‘&#125;)</span><br><span class="line">&gt; <span class="comment">//形式： ids[0]=1&amp;aids1]=2&amp;ids[2]=3</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; qs.stringify(&#123;<span class="attr">ids</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;, &#123;<span class="attr">arrayFormat</span>: ‘brackets‘&#125;)</span><br><span class="line">&gt; <span class="comment">//形式：ids[]=1&amp;ids[]=2&amp;ids[]=3</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; qs.stringify(&#123;<span class="attr">ids</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;, &#123;<span class="attr">arrayFormat</span>: ‘repeat‘&#125;)</span><br><span class="line">&gt; <span class="comment">//形式： ids=1&amp;ids=2&amp;id=3</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+</blockquote>
+<h4 id="spring-boot"><a href="#spring-boot" class="headerlink" title="spring boot"></a>spring boot</h4><ul>
+<li>@RequestParam<ul>
+<li>适用于content-type不为application/json的post请求，post请求需要使用qs.stringify()序列化数据。</li>
+<li>适用于get请求</li>
+</ul>
+</li>
+<li>@RequestBody<ul>
+<li>适用于content-type等于application/json的post请求，post请求需要使用json.stringify()序列化数据。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/vue/">vue</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前后端接口/">前后端接口</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="javascript-this的绑定" class="article article-type-javascript" itemscope itemprop="blogPost">
   
@@ -1210,112 +1300,6 @@
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/剑指Offer/">剑指Offer</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hive-shell正则转义" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/09/14/hive-shell正则转义/" class="article-date">
-      <time datetime="2019-09-14T09:23:50.000Z" itemprop="datePublished">2019-09-14</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/14/hive-shell正则转义/">正则表达式转义自字符在Hive+Shell中的特殊注意</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="hive中"><a href="#hive中" class="headerlink" title="hive中"></a>hive中</h2><ul>
-<li>正则表达式的转移字符为<em>双斜线“\\”</em></li>
-<li>spilt(string str, string pat),分割符pat为正则表达式<ul>
-<li>待分割字符串：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> positions <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>使用分割符“|”分割开</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(positions,<span class="string">'|'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure>
-
-<p>发现，“|”也作为列表的一部分。这是因为，之间使用‘|’被默认为正则表达式中的或，而不会被作为分隔符使用，这时，分隔符为空，所以split函数将字段<em>positions</em>中的单个字符全部分隔开。</p>
-<blockquote>
-<p>使用“\\”转义字符</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(positions,<span class="string">'\\|'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在“[]”中拼接处字符串<br> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(positions,<span class="string">'[|]'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="转义“转义字符”"><a href="#转义“转义字符”" class="headerlink" title="转义“转义字符”"></a>转义“转义字符”</h2><ul>
-<li>有时候，在一些特殊情况下，需要对’&#39;进行转义，会出现两个’\\‘或者四个’\\\\‘转义字符</li>
-<li></li>
-</ul>
-<ol>
-<li>hive的split函数和正则表达式<blockquote>
-<p>当以“\”作为分隔符的话，那么就需要使用四个斜线“\\”，</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">split</span>(<span class="string">'a\b\c'</span>,<span class="string">'\\\\'</span>) <span class="keyword">from</span> [表名] <span class="keyword">where</span> [分区条件];</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<ol start="2">
-<li>hive语句在shell脚本中执行<blockquote>
-<p>shell中’&#39;是特殊字符，也需要转义，shell的转义字符是一个”&quot;。<br>hive 语句在shell脚本中执行时，就需要由shell转义后，再由hive执行。</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">SQL="</span><br><span class="line">select split(positions,'\\|') from [表名] where [分区条件];</span><br><span class="line">"</span><br><span class="line">echo -e '$&#123;SQL&#125;'</span><br><span class="line">hive -e '$&#123;SQL&#125;'</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hive/">hive</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则转义-hive-shell/">正则转义,hive,shell</a></li></ul>
     </div>
 
       

@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>qs与json序列化的区别</title>
+      <link href="/2020/11/10/qs%E4%B8%8Ejson%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+      <url>/2020/11/10/qs%E4%B8%8Ejson%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+      
+        <content type="html"><![CDATA[<p>​    在开发vue项目的时候，发现需要使用不同的序列化函数才能成功联通后端。所以我查找了一些相关资料，记录下来，用于以后工作查阅。</p><h4 id="前端请求格式："><a href="#前端请求格式：" class="headerlink" title="前端请求格式："></a>前端请求格式：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">url: Url.importRules,</span><br><span class="line">method: <span class="string">'post'</span>,</span><br><span class="line">headers: &#123;</span><br><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  data: <span class="built_in">JSON</span>.stringify(ws)  <span class="comment">// 使用json.stringfy序列化方法</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">  url: Url.getResultUrl,</span><br><span class="line">  method: <span class="string">'post'</span>,</span><br><span class="line">  headers: &#123;</span><br><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  data: qs.stringify(postdata)    <span class="comment">//使用qs.stringfy序列化方法</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h4 id="关于q-s与json的区别"><a href="#关于q-s与json的区别" class="headerlink" title="关于q s与json的区别"></a>关于q s与json的区别</h4><blockquote><p>qs可以通过<strong>npm install qs</strong>命令进行安装。而qs.stringfy()将对象序列化为url的形式，以&amp;进行拼接。</p><p>json则将对象序列化为json格式，如下：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> a = &#123;<span class="attr">name</span>:<span class="string">'hehe'</span>,<span class="attr">age</span>:<span class="number">10</span>&#125;;</span><br><span class="line">&gt;  qs.stringify(a)</span><br><span class="line">&gt; <span class="comment">// 'name=hehe&amp;age=10'</span></span><br><span class="line">&gt; <span class="built_in">JSON</span>.stringify(a)</span><br><span class="line">&gt; <span class="comment">// '&#123;"name":"hehe","age":10&#125;'</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></blockquote><h5 id="qs的类型"><a href="#qs的类型" class="headerlink" title="qs的类型"></a>qs的类型</h5><blockquote><p> qs分为三种类型。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; qs.stringify(&#123;<span class="attr">ids</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;, &#123;<span class="attr">arrayFormat</span>: ‘indices‘&#125;)</span><br><span class="line">&gt; <span class="comment">//形式： ids[0]=1&amp;aids1]=2&amp;ids[2]=3</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; qs.stringify(&#123;<span class="attr">ids</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;, &#123;<span class="attr">arrayFormat</span>: ‘brackets‘&#125;)</span><br><span class="line">&gt; <span class="comment">//形式：ids[]=1&amp;ids[]=2&amp;ids[]=3</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; qs.stringify(&#123;<span class="attr">ids</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;, &#123;<span class="attr">arrayFormat</span>: ‘repeat‘&#125;)</span><br><span class="line">&gt; <span class="comment">//形式： ids=1&amp;ids=2&amp;id=3</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></blockquote><blockquote></blockquote><h4 id="spring-boot"><a href="#spring-boot" class="headerlink" title="spring boot"></a>spring boot</h4><ul><li>@RequestParam<ul><li>适用于content-type不为application/json的post请求，post请求需要使用qs.stringify()序列化数据。</li><li>适用于get请求</li></ul></li><li>@RequestBody<ul><li>适用于content-type等于application/json的post请求，post请求需要使用json.stringify()序列化数据。</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> vue </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前后端接口 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>this的绑定</title>
       <link href="/2020/10/28/this%E7%9A%84%E7%BB%91%E5%AE%9A/"/>
       <url>/2020/10/28/this%E7%9A%84%E7%BB%91%E5%AE%9A/</url>
