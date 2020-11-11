@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Dora Blog">
 <meta property="og:description" content="​    在开发vue项目的时候，发现需要使用不同的序列化函数才能成功联通后端。所以我查找了一些相关资料，记录下来，用于以后工作查阅。 前端请求格式：12345678axios(&amp;#123;	url: Url.importRules,	method: &apos;post&apos;,	headers: &amp;#123;    &apos;Content-Type&apos;: &apos;application/json&apos;  &amp;#125;,  da">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-11T01:54:54.426Z">
+<meta property="og:updated_time" content="2020-11-11T06:42:58.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="qs与json序列化的区别">
 <meta name="twitter:description" content="​    在开发vue项目的时候，发现需要使用不同的序列化函数才能成功联通后端。所以我查找了一些相关资料，记录下来，用于以后工作查阅。 前端请求格式：12345678axios(&amp;#123;	url: Url.importRules,	method: &apos;post&apos;,	headers: &amp;#123;    &apos;Content-Type&apos;: &apos;application/json&apos;  &amp;#125;,  da">
@@ -192,7 +192,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyspark/">Pyspark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前后端接口/">前后端接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer/">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer-数组/">剑指Offer, 数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则转义-hive-shell/">正则转义,hive,shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法题/">算法题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/终端/">终端</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyspark/">Pyspark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前后端接口/">前后端接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer/">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer-数组/">剑指Offer, 数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原理知识/">原理知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则转义-hive-shell/">正则转义,hive,shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法题/">算法题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/终端/">终端</a></li></ul>
                     </div>
                 </section>
                 
@@ -316,7 +316,11 @@
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">  url: Url.getResultUrl,</span><br><span class="line">  method: <span class="string">'post'</span>,</span><br><span class="line">  headers: &#123;</span><br><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  data: qs.stringify(postdata)    <span class="comment">//使用qs.stringfy序列化方法</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<h4 id="关于q-s与json的区别"><a href="#关于q-s与json的区别" class="headerlink" title="关于q s与json的区别"></a>关于q s与json的区别</h4><blockquote>
+<h4 id="后端接收代码："><a href="#后端接收代码：" class="headerlink" title="后端接收代码："></a>后端接收代码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(path = &#123;<span class="string">"/importRules"</span>&#125;,method = &#123;RequestMethod.POST&#125;)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Integer&gt; <span class="title">importRules</span><span class="params">(@RequestBody ImportRules[] importRules)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> xxx.importRules(importRules);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(path = &#123;<span class="string">"/getResult"</span>&#125;,consumes=&#123;<span class="string">"application/x-www-form-urlencoded;charset=utf-8"</span>&#125;,method = &#123;RequestMethod.POST&#125;)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;EvolutionStrategiesRes&gt; <span class="title">getResult</span><span class="params">(@RequestParam(name = <span class="string">"support"</span>)</span> String support, @<span class="title">Request</span><span class="params">(name = <span class="string">"conf"</span>)</span> String conf)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> xxx.getResult(support, conf, flag);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="关于qs与json的区别"><a href="#关于qs与json的区别" class="headerlink" title="关于qs与json的区别"></a>关于qs与json的区别</h4><blockquote>
 <p>qs可以通过<strong>npm install qs</strong>命令进行安装。而qs.stringfy()将对象序列化为url的形式，以&amp;进行拼接。</p>
 <p>json则将对象序列化为json格式，如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> a = &#123;<span class="attr">name</span>:<span class="string">'hehe'</span>,<span class="attr">age</span>:<span class="number">10</span>&#125;;</span><br><span class="line">&gt;  qs.stringify(a)</span><br><span class="line">&gt; <span class="comment">// 'name=hehe&amp;age=10'</span></span><br><span class="line">&gt; <span class="built_in">JSON</span>.stringify(a)</span><br><span class="line">&gt; <span class="comment">// '&#123;"name":"hehe","age":10&#125;'</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
@@ -327,7 +331,7 @@
 </blockquote>
 <blockquote>
 </blockquote>
-<h4 id="spring-boot"><a href="#spring-boot" class="headerlink" title="spring boot"></a>spring boot</h4><ul>
+<h4 id="后端spring-boot"><a href="#后端spring-boot" class="headerlink" title="后端spring boot"></a>后端spring boot</h4><ul>
 <li>@RequestParam<ul>
 <li>适用于content-type不为application/json的post请求，post请求需要使用qs.stringify()序列化数据。</li>
 <li>适用于get请求</li>
@@ -349,7 +353,7 @@
         <p><span>本文标题:</span><a href="/2020/11/10/qs与json序列化的区别/">qs与json序列化的区别</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">赵新月 Xinyue</a></p>
         <p><span>发布时间:</span>2020-11-10, 11:01:55</p>
-        <p><span>最后更新:</span>2020-11-11, 09:54:54</p>
+        <p><span>最后更新:</span>2020-11-11, 14:42:58</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/11/10/qs与json序列化的区别/" title="qs与json序列化的区别">http://yoursite.com/2020/11/10/qs与json序列化的区别/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2020/11/10/qs与json序列化的区别/　　作者: 赵新月 Xinyue" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -363,6 +367,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2020/11/11/javaScript迭代器的含义与用法详解/">
+                    javaScript迭代器的含义与用法详解
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -379,7 +389,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前端请求格式："><span class="toc-number">1.</span> <span class="toc-text">前端请求格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于q-s与json的区别"><span class="toc-number">2.</span> <span class="toc-text">关于q s与json的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#qs的类型"><span class="toc-number">2.1.</span> <span class="toc-text">qs的类型</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#spring-boot"><span class="toc-number">3.</span> <span class="toc-text">spring boot</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前端请求格式："><span class="toc-number">1.</span> <span class="toc-text">前端请求格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#后端接收代码："><span class="toc-number">2.</span> <span class="toc-text">后端接收代码：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于qs与json的区别"><span class="toc-number">3.</span> <span class="toc-text">关于qs与json的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#qs的类型"><span class="toc-number">3.1.</span> <span class="toc-text">qs的类型</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#后端spring-boot"><span class="toc-number">4.</span> <span class="toc-text">后端spring boot</span></a></li></ol>
         
     </div>
     <style>
@@ -435,7 +445,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2020/11/11/javaScript迭代器的含义与用法详解/" title="上一篇: javaScript迭代器的含义与用法详解">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -447,7 +459,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/11/10/qs与json序列化的区别/">qs与json序列化的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/10/28/this的绑定/">this的绑定</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/08/SQL常见注意问题/">SQL常见注意问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/常用的数据结构/">常用的数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/23/Pyspark安装与配置/">Pyspark安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/动态规划与贪婪算法/">动态规划与贪婪算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/回溯法/">回溯法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/排序与查找/">排序与查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/05/排序算法/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/01/剑指offer-fibonacci数列/">剑指Offer-fibonacci数列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/hive-shell正则转义/">正则表达式转义自字符在Hive+Shell中的特殊注意</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/统计文件行数/">统计文件行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/“剑指Offer-数组”/">“剑指Offer-数组”</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/10/mac删除GlobalProtect/">mac删除GlobalProtect</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/11/11/javaScript迭代器的含义与用法详解/">javaScript迭代器的含义与用法详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/10/qs与json序列化的区别/">qs与json序列化的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/10/28/this的绑定/">this的绑定</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/08/SQL常见注意问题/">SQL常见注意问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/常用的数据结构/">常用的数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/23/Pyspark安装与配置/">Pyspark安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/动态规划与贪婪算法/">动态规划与贪婪算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/回溯法/">回溯法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/排序与查找/">排序与查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/05/排序算法/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/01/剑指offer-fibonacci数列/">剑指Offer-fibonacci数列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/hive-shell正则转义/">正则表达式转义自字符在Hive+Shell中的特殊注意</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/统计文件行数/">统计文件行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/“剑指Offer-数组”/">“剑指Offer-数组”</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/10/mac删除GlobalProtect/">mac删除GlobalProtect</a></li></ul>
 
 
 

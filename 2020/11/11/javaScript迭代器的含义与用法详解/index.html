@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="赵新月 Xinyue">
+
+
+
+<meta name="description" content="引言​    正在阅读《学习JavaScript数据结构与算法》，在学习数据结构的时候，最常见到的词就是迭代器了，在《你不知道的JavaScript（上篇）》中对象的介绍，也讲了如果对对象自定义迭代器，所以我觉得如果想要更熟悉JavaScirpt数据结构，深入了解迭代器很有必要。 目录内容迭代器是什么（来自我内心的问号） 迭代器就是为实现不同几何进行统一遍历操作的一种机制，只要给需要遍历的数据结构">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaScript迭代器的含义与用法详解">
+<meta property="og:url" content="http://yoursite.com/2020/11/11/javaScript迭代器的含义与用法详解/index.html">
+<meta property="og:site_name" content="Dora Blog">
+<meta property="og:description" content="引言​    正在阅读《学习JavaScript数据结构与算法》，在学习数据结构的时候，最常见到的词就是迭代器了，在《你不知道的JavaScript（上篇）》中对象的介绍，也讲了如果对对象自定义迭代器，所以我觉得如果想要更熟悉JavaScirpt数据结构，深入了解迭代器很有必要。 目录内容迭代器是什么（来自我内心的问号） 迭代器就是为实现不同几何进行统一遍历操作的一种机制，只要给需要遍历的数据结构">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-11T06:18:02.850Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javaScript迭代器的含义与用法详解">
+<meta name="twitter:description" content="引言​    正在阅读《学习JavaScript数据结构与算法》，在学习数据结构的时候，最常见到的词就是迭代器了，在《你不知道的JavaScript（上篇）》中对象的介绍，也讲了如果对对象自定义迭代器，所以我觉得如果想要更熟悉JavaScirpt数据结构，深入了解迭代器很有必要。 目录内容迭代器是什么（来自我内心的问号） 迭代器就是为实现不同几何进行统一遍历操作的一种机制，只要给需要遍历的数据结构">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Dora Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>javaScript迭代器的含义与用法详解 | Dora Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/xinyue.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">赵新月 Xinyue</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日月星辉之外，我是第四种难得。</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:Xxxin_yue@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/SuperMoonxy" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyspark/">Pyspark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前后端接口/">前后端接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer/">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/剑指Offer-数组/">剑指Offer, 数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原理知识/">原理知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则转义-hive-shell/">正则转义,hive,shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法题/">算法题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/终端/">终端</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">赵新月 Xinyue</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/xinyue.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">赵新月 Xinyue</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日月星辉之外，我是第四种难得。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:Xxxin_yue@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/SuperMoonxy" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-javaScript迭代器的含义与用法详解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/11/11/javaScript迭代器的含义与用法详解/" class="article-date">
+      <time datetime="2020-11-11T01:56:43.000Z" itemprop="datePublished">2020-11-11</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      javaScript迭代器的含义与用法详解
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>​    正在阅读《学习JavaScript数据结构与算法》，在学习数据结构的时候，最常见到的词就是迭代器了，在《你不知道的JavaScript（上篇）》中对象的介绍，也讲了如果对对象自定义迭代器，所以我觉得如果想要更熟悉JavaScirpt数据结构，深入了解迭代器很有必要。</p>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><h4 id="迭代器是什么（来自我内心的问号）"><a href="#迭代器是什么（来自我内心的问号）" class="headerlink" title="迭代器是什么（来自我内心的问号）"></a>迭代器是什么（来自我内心的问号）</h4><blockquote>
+<p>迭代器就是为实现不同几何进行统一遍历操作的一种机制，只要给需要遍历的数据结构部署Iterator接口，通过调用该接口，或者使用消耗该接口的API实现遍历操作。</p>
+</blockquote>
+<h4 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h4><blockquote>
+<p>迭代器模式，提供一种方法顺序访问一个聚合对象中的各种元素，而又不暴露该对象的内部表示。</p>
+</blockquote>
+<p>在前端工作中，数据可视化工作是必要的，后端传来的数据结构多样，有map,set等，JavaScirpt原有的由一堆元素组成的数据结构，包括数组（Array）、对象(Object)，以及ES6(ESCM2015)新加入的Map和Set，数据结构变化多样，如果想要遍历他们，一个统一的标准化遍历操作是必要的，所以就产生了迭代器。</p>
+<h4 id="迭代器分类"><a href="#迭代器分类" class="headerlink" title="迭代器分类"></a>迭代器分类</h4><ul>
+<li>内部迭代器：本身是函数，该函数内部定义好迭代规则，完全接受整个迭代过程，外部只需要一次调用。如Array.prototype.forEach()方法。</li>
+<li>外部迭代器：本身是函数，执行返回的迭代回到，迭代下一个元素必须显示调用。使用forEach调用，只可以一次性把数据全部拉取消耗，而迭代器可以用于以一次一步的方式控制行为，使得迭代过程更加灵活可控。</li>
+</ul>
+<blockquote>
+<p>ES6为迭代器引入了一个隐式的标准化接口。Javascript许多内建的数据结构，例如Array、Map、Set、String、TypedArray、函数的 arguments 对象、NodeList 对象都具备 Iterator 接口。可以通过在控制台打印一个Array实例，查看其原型上具有一个Symbol.iterator属性（Symbol.iterator其实是Symbol(‘Symbol.iterator’)的简写，属性名是Symbol类型代表着这个属性的唯一以及不可重写覆盖），它就是迭代器函数，执行这个函数，就会返回一个迭代器对象。</p>
+</blockquote>
+<h4 id="迭代器的使用"><a href="#迭代器的使用" class="headerlink" title="迭代器的使用"></a>迭代器的使用</h4><h5 id="for…of使用"><a href="#for…of使用" class="headerlink" title="for…of使用"></a>for…of使用</h5><ul>
+<li>数组</li>
+</ul>
+<blockquote>
+<p>数组有内置的@@iterator。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>];</span><br><span class="line"><span class="keyword">let</span> iter = arr[<span class="built_in">Symbol</span>.iterator]();</span><br><span class="line"><span class="built_in">console</span>.log(iter.next()) <span class="comment">// &#123; value: 'a', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iter.next()) <span class="comment">// &#123; value: 'b', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iter.next()) <span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> num <span class="keyword">of</span> arr)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(num);</span><br><span class="line">&#125; <span class="comment">// 1 2 3</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>for - of是ES6新加入的。for-of循环首先会向被访问对象请求一个迭代器对象，然后通过调用这个迭代器对象的next()方法来遍历所有返回值。</strong></p>
+<ul>
+<li>对象</li>
+</ul>
+<blockquote>
+<p>普通的对象没有内置的@@iterator，所以无法自动完成for…of遍历。但是可以给任何想遍历的对象定义@@iterator。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">    a:<span class="number">2</span>,</span><br><span class="line">    b:<span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 给对象定义@@iterator</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(myObject, <span class="built_in">Symbol</span>.iterator, &#123;</span><br><span class="line">    enumerable: <span class="literal">false</span>,</span><br><span class="line">    writable: <span class="literal">false</span>,</span><br><span class="line">    configurable: <span class="literal">true</span>,</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;    <span class="comment">//意义是，对象里的symbol.iterator值为一个迭代器对象，有一个名字叫做next的方法</span></span><br><span class="line">        <span class="keyword">var</span> o = <span class="keyword">this</span>; <span class="comment">//对象</span></span><br><span class="line">        <span class="keyword">var</span> idx = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> ks = <span class="built_in">Object</span>.keys(o);</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            next: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;    <span class="comment">//for of循环请求到迭代器对象，然后通过调用对象的next方法来遍历所有的返回值</span></span><br><span class="line">                <span class="built_in">console</span>.log(o, idx);</span><br><span class="line">                <span class="keyword">return</span> &#123;</span><br><span class="line">                    value: o[ks[idx++]],</span><br><span class="line">                    done: idx &gt; ks.length</span><br><span class="line">                &#125;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// for of循环首先会向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的next方法来遍历所有返回值</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> v <span class="keyword">of</span> myObject) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="spread运算符"><a href="#spread运算符" class="headerlink" title="spread运算符"></a>spread运算符</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x, y, z);</span><br><span class="line">&#125;</span><br><span class="line">f(...[<span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]);  \\ <span class="number">2</span> <span class="number">3</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>结构赋值可以部分或者完全消耗一个迭代器：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> it = arr[<span class="built_in">Symbol</span>.iterator]();</span><br><span class="line"><span class="comment">// 部分消耗</span></span><br><span class="line"><span class="keyword">var</span> [x, y] = it;</span><br><span class="line"><span class="built_in">console</span>.log(x, y);  <span class="comment">// 1 2</span></span><br><span class="line"><span class="comment">// 完全消耗</span></span><br><span class="line"><span class="keyword">var</span> [y, ...z] = it;</span><br><span class="line"><span class="built_in">console</span>.log(y, z);   <span class="comment">// 3  [4, 5]</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="返回迭代器的API"><a href="#返回迭代器的API" class="headerlink" title="返回迭代器的API"></a>返回迭代器的API</h5><blockquote>
+<p>产生迭代器对象，已经介绍了通过定义迭代器函数生产迭代器对象，调用javascript内置数据结构定义好的迭代器函数。除此，对于数组，以及es6新增的map、set，这些数据结构不仅本身已部署迭代器接口，还提供了API方法返回迭代器对象。</p>
+<ul>
+<li>entries() 返回一个遍历器对象，用来遍历[key, value]</li>
+<li>keys() 返回一个遍历器对象，用来遍历所有的key</li>
+<li>values() 返回一个遍历器对象，用来遍历所有的value </li>
+</ul>
+</blockquote>
+<ul>
+<li>数组</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> arrEntries = arr.entries();</span><br><span class="line"><span class="built_in">console</span>.log(arrEntries.next()); <span class="comment">//&#123;value: Array(2)[0,1], done: false&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(arrEntries.next()); <span class="comment">//&#123;value: Array(2)[1,2], done: false&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrKeys = arr.keys();</span><br><span class="line"><span class="built_in">console</span>.log(arrKeys.next()); <span class="comment">// &#123;value: 0, done: false&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(arrKeys.next()); <span class="comment">// &#123;value: 1, done: false&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrValues = arr.values();</span><br><span class="line"><span class="built_in">console</span>.log(arrValues.next()); <span class="comment">// &#123;value: 1, done: false&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(arrValues.next()); <span class="comment">// &#123;value: 2, done: false&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Set</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set([1, 2, 3, 4]);  //传入数组</span><br><span class="line">let setEntries = <span class="keyword">set</span>.entries();</span><br><span class="line">console.log(setEntries.next()); // &#123;value: <span class="built_in">Array</span>(<span class="number">2</span>)[<span class="number">1</span>, <span class="number">1</span>], <span class="attr">done</span>: <span class="literal">false</span>&#125;</span><br><span class="line"><span class="built_in">console</span>.log(setEntries.next()); <span class="comment">// &#123;value: Array(2)[1, 1], done: false&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>对比数组，可以在key value中发现set和array的区别，array的key从0开始，set的key从1开始</strong></p>
+<ul>
+<li>Map</li>
+</ul>
+<p>用法如上。</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><h4 id="为什么对象没有内置迭代器"><a href="#为什么对象没有内置迭代器" class="headerlink" title="为什么对象没有内置迭代器"></a>为什么对象没有内置迭代器</h4><p>关于对象，对象是javascript的基础，javascript中有许多特殊的对象子类型具备一些额外的行为，包括array, set,map等。</p>
+<p>对于对象的遍历，需要考虑遍历的是对象自身的属性还是遍历对象自身的可枚举属性，还是遍历对象原型的属性，还是遍历对象原型链上可枚举的属性。因此无法统一一个合适的迭代器。</p>
+<h4 id="使用生成器生成迭代器对象"><a href="#使用生成器生成迭代器对象" class="headerlink" title="使用生成器生成迭代器对象"></a>使用生成器生成迭代器对象</h4><blockquote>
+<p>函数是一段执行特定任务的代码块，一般函数开始运行之前，在它结束之前，不会被打断。在ES6中引入了一种叫<strong><span color="green">生成器</span></strong>的函数形式，</p>
+<ul>
+<li>生成器可以在执行中暂停自身，可以立即恢复执行。</li>
+<li>生成器在每次暂停/恢复是都提供了一个双向传递信息的功能，暂停时生成器函数会返回一个值，恢复执行时迭代器可以通过向next方法传参向函数内部传递一个值。</li>
+<li>yield关键字用来标示一个暂停点，出现次数不限。</li>
+<li>yield不止是一个暂停点，它还是一个表达式，它会发出一个值，如果没有，后面的值相当于yield undefined。</li>
+<li>yield不是运算符，因为它可以单独使用。</li>
+<li>yield关键字的优先级很低，只有spread运算符和逗号运算符优先级比它低。</li>
+</ul>
+</blockquote>
+<ul>
+<li>语法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">fn</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fn</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">fn</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span>*<span class="title">fn</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>示例</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> y = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">'stop'</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x + y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> it = fn();</span><br><span class="line"><span class="built_in">console</span>.log(it.next());  <span class="comment">// &#123;value: 'stop', done: false&#125;</span></span><br><span class="line">it.next();  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2020/11/11/javaScript迭代器的含义与用法详解/">javaScript迭代器的含义与用法详解</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">赵新月 Xinyue</a></p>
+        <p><span>发布时间:</span>2020-11-11, 09:56:43</p>
+        <p><span>最后更新:</span>2020-11-11, 14:18:02</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2020/11/11/javaScript迭代器的含义与用法详解/" title="javaScript迭代器的含义与用法详解">http://yoursite.com/2020/11/11/javaScript迭代器的含义与用法详解/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2020/11/11/javaScript迭代器的含义与用法详解/　　作者: 赵新月 Xinyue" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2020/11/10/qs与json序列化的区别/">
+                    qs与json序列化的区别
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目录"><span class="toc-number">2.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容"><span class="toc-number">3.</span> <span class="toc-text">内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#迭代器是什么（来自我内心的问号）"><span class="toc-number">3.1.</span> <span class="toc-text">迭代器是什么（来自我内心的问号）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#迭代器模式"><span class="toc-number">3.2.</span> <span class="toc-text">迭代器模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#迭代器分类"><span class="toc-number">3.3.</span> <span class="toc-text">迭代器分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#迭代器的使用"><span class="toc-number">3.4.</span> <span class="toc-text">迭代器的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#for…of使用"><span class="toc-number">3.4.1.</span> <span class="toc-text">for…of使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#spread运算符"><span class="toc-number">3.4.2.</span> <span class="toc-text">spread运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#返回迭代器的API"><span class="toc-number">3.4.3.</span> <span class="toc-text">返回迭代器的API</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#补充"><span class="toc-number">4.</span> <span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么对象没有内置迭代器"><span class="toc-number">4.1.</span> <span class="toc-text">为什么对象没有内置迭代器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用生成器生成迭代器对象"><span class="toc-number">4.2.</span> <span class="toc-text">使用生成器生成迭代器对象</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"javaScript迭代器的含义与用法详解　| Dora Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2020/11/10/qs与json序列化的区别/" title="下一篇: qs与json序列化的区别">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/11/11/javaScript迭代器的含义与用法详解/">javaScript迭代器的含义与用法详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/10/qs与json序列化的区别/">qs与json序列化的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/10/28/this的绑定/">this的绑定</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/08/SQL常见注意问题/">SQL常见注意问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/常用的数据结构/">常用的数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/23/Pyspark安装与配置/">Pyspark安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/动态规划与贪婪算法/">动态规划与贪婪算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/回溯法/">回溯法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/排序与查找/">排序与查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/05/排序算法/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/01/剑指offer-fibonacci数列/">剑指Offer-fibonacci数列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/hive-shell正则转义/">正则表达式转义自字符在Hive+Shell中的特殊注意</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/统计文件行数/">统计文件行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/“剑指Offer-数组”/">“剑指Offer-数组”</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/10/mac删除GlobalProtect/">mac删除GlobalProtect</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2020 赵新月 Xinyue
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
