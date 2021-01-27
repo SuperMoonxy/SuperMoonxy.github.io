@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="员工年龄排序 要求：时间效率为$O(n)$，允许使用常量大小的辅助空间。 思路：排序数字具有具体含义，员工年龄，这就说明排序数字大小具有具体有限且较小的范围。可以使用辅助空间来统计每个年龄出现的次数。  1234567891011121314151617181920212223void sortages(int ages[],int len)&amp;#123;  if (ages==null || le">
-<meta name="keywords" content="learning more">
+<meta name="description" content="#Webpack ###初始化node环境 1npm init -y  安装webpack1npm install webpack webpack-cli -D  建立src/index.js建立webpack.config.js123456789const path = require(&apos;path&apos;)   //引入node.js的path模块module.exports = &amp;#123;	nod">
+<meta name="keywords" content="webpack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="排序与查找">
-<meta property="og:url" content="http://yoursite.com/2019/10/08/排序与查找/index.html">
+<meta property="og:title" content="webpack&amp;babel使用">
+<meta property="og:url" content="http://yoursite.com/2021/01/27/webpack-babel用法/index.html">
 <meta property="og:site_name" content="Dora Blog">
-<meta property="og:description" content="员工年龄排序 要求：时间效率为$O(n)$，允许使用常量大小的辅助空间。 思路：排序数字具有具体含义，员工年龄，这就说明排序数字大小具有具体有限且较小的范围。可以使用辅助空间来统计每个年龄出现的次数。  1234567891011121314151617181920212223void sortages(int ages[],int len)&amp;#123;  if (ages==null || le">
+<meta property="og:description" content="#Webpack ###初始化node环境 1npm init -y  安装webpack1npm install webpack webpack-cli -D  建立src/index.js建立webpack.config.js123456789const path = require(&apos;path&apos;)   //引入node.js的path模块module.exports = &amp;#123;	nod">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-08T02:34:19.280Z">
+<meta property="og:updated_time" content="2021-01-27T09:15:28.364Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="排序与查找">
-<meta name="twitter:description" content="员工年龄排序 要求：时间效率为$O(n)$，允许使用常量大小的辅助空间。 思路：排序数字具有具体含义，员工年龄，这就说明排序数字大小具有具体有限且较小的范围。可以使用辅助空间来统计每个年龄出现的次数。  1234567891011121314151617181920212223void sortages(int ages[],int len)&amp;#123;  if (ages==null || le">
+<meta name="twitter:title" content="webpack&amp;babel使用">
+<meta name="twitter:description" content="#Webpack ###初始化node环境 1npm init -y  安装webpack1npm install webpack webpack-cli -D  建立src/index.js建立webpack.config.js123456789const path = require(&apos;path&apos;)   //引入node.js的path模块module.exports = &amp;#123;	nod">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>排序与查找 | Dora Blog</title>
+<title>webpack&amp;babel使用 | Dora Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -267,11 +267,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-排序与查找" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-webpack-babel用法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/10/08/排序与查找/" class="article-date">
-      <time datetime="2019-10-08T02:33:29.000Z" itemprop="datePublished">2019-10-08</time>
+      <a href="/2021/01/27/webpack-babel用法/" class="article-date">
+      <time datetime="2021-01-27T07:46:09.000Z" itemprop="datePublished">2021-01-27</time>
 </a>
 
 
@@ -286,7 +286,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      排序与查找
+      webpack&amp;babel使用
     </h1>
   
 
@@ -295,11 +295,15 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/算法题/">算法题</a>
+    <a class="article-category-link" href="/categories/打包/">打包</a>
     </div>
 
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -307,24 +311,39 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="员工年龄排序"><a href="#员工年龄排序" class="headerlink" title="员工年龄排序"></a>员工年龄排序</h3><ul>
-<li>要求：时间效率为$O(n)$，允许使用常量大小的辅助空间。</li>
-<li>思路：排序数字具有具体含义，员工年龄，这就说明排序数字大小具有具体有限且较小的范围。可以使用辅助空间来统计每个年龄出现的次数。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sortages</span><span class="params">(<span class="keyword">int</span> ages[],<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (ages==null || len &lt;= <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">int</span> timesofage[<span class="number">100</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)</span><br><span class="line">    timesofage[i] = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len ; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    age = ages[i];</span><br><span class="line">    ++timesofage[age];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">100</span>&amp;&amp;k &lt; len;i++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> j = timesofages[i];</span><br><span class="line">    <span class="keyword">while</span>(j &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      ages[k++] = i;</span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>#Webpack</p>
+<p>###初始化node环境</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
 
-<h3 id="旋转数组的最小数字"><a href="#旋转数组的最小数字" class="headerlink" title="旋转数组的最小数字"></a>旋转数组的最小数字</h3><p>题目：把一个数组最开始的若干个元素搬到数组的末尾，我们称为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。</p>
-<ul>
-<li>{3,4,5,1,2}</li>
-<li>{1,1,1,1,1}</li>
-<li>{1,1,1,0,1}</li>
-</ul>
-<p>思路：</p>
-<p>旋转之后的数组实际可以划分为两个 排序的子数组，且前面的子数组的元素都大于或者等于后面子数组的元素。而最小的元素刚好就是这两个子数组的分界线，可以采用<font color="blue">二分查找</font>的思路寻找最小元素。 还有 <font color="green">特例</font>，排序数组本身也是一种旋转，这种情况，数组的最小元素就是第一个元素。「1，1，1，0，1」这种情况，第一个指针和第二个指针，俩指针中间的数字都是1，这种情况必须<font color="blue">顺序查找</font>。</p>
-<ul>
-<li>c++：</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span>  <span class="title">minInorder</span><span class="params">(<span class="keyword">int</span> *numbers,<span class="keyword">int</span> index1, <span class="keyword">int</span> index2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> min = numbers[index1];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = index1+<span class="number">1</span>;i &lt;=index2;i++)</span><br><span class="line">    <span class="keyword">if</span>(numbers[i] &lt; min)</span><br><span class="line">      min = numbers[i];</span><br><span class="line">  <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> *numbers,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> index1 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> index2 = len<span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">int</span> midindex = index1;    <span class="comment">//初始赋值是考虑排序数组本身，第一个元素就是最小值</span></span><br><span class="line">  <span class="keyword">while</span>(numbers[index1]&gt;=numbers[index2])</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span>(index2-index2 == <span class="number">1</span>)</span><br><span class="line">      <span class="keyword">return</span> numbers[index2];</span><br><span class="line">    midindex=(index1+index2)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(numbers[index1] == numbers[index2] &amp;&amp; numbers[midindex] == numbers[index1])</span><br><span class="line">      <span class="keyword">return</span> minInorder(numbers,index1,index2);</span><br><span class="line">    <span class="keyword">if</span>(numbers[midindex]&gt; numbers[index1])</span><br><span class="line">      index1 = midindex;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      index2 = midindex;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> numbers[midindex];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
+
+<h3 id="建立src-index-js"><a href="#建立src-index-js" class="headerlink" title="建立src/index.js"></a>建立src/index.js</h3><h3 id="建立webpack-config-js"><a href="#建立webpack-config-js" class="headerlink" title="建立webpack.config.js"></a>建立webpack.config.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)   <span class="comment">//引入node.js的path模块</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">	node: <span class="string">'development'</span>,   <span class="comment">// production</span></span><br><span class="line">	entry: path.join(__dirname, <span class="string">'src'</span>, <span class="string">'index.js'</span>),    <span class="comment">// __dirname是根目录</span></span><br><span class="line">	output: &#123;</span><br><span class="line">		filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">		path: path.join(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行-（配置webpack-json）"><a href="#运行-（配置webpack-json）" class="headerlink" title="运行 （配置webpack.json）"></a>运行 （配置webpack.json）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scirpts"</span>: &#123;</span><br><span class="line">	<span class="string">"test"</span>:,</span><br><span class="line">	<span class="string">"build"</span>: <span class="string">"webpack"</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<h3 id="建立src-index-html"><a href="#建立src-index-html" class="headerlink" title="建立src/index.html"></a>建立src/index.html</h3><h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install html-webpack-plugin -D</span><br><span class="line">npm install webpack-web-server -D   //监控代码更新并且响应</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置webpack-config-js"><a href="#配置webpack-config-js" class="headerlink" title="配置webpack.config.js"></a>配置webpack.config.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// output平级</span></span><br><span class="line">plugins: [</span><br><span class="line">	<span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">    template: path.join(__dirname, <span class="string">'src'</span>, <span class="string">'index.html'</span>),</span><br><span class="line">    filename: <span class="string">'index.html'</span></span><br><span class="line">  &#125;)</span><br><span class="line">],</span><br><span class="line">devServer: &#123;</span><br><span class="line">  port: <span class="number">3000</span>,</span><br><span class="line">    contentBase: path.join(__dirname, <span class="string">'src'</span>, <span class="string">'index.html'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置webpack-json）"><a href="#配置webpack-json）" class="headerlink" title="配置webpack.json）"></a>配置webpack.json）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scirpts"</span>: &#123;</span><br><span class="line">	<span class="string">"test"</span>:,</span><br><span class="line">	<span class="string">"build"</span>: <span class="string">"webpack"</span>,</span><br><span class="line">  <span class="string">"dev"</span>: <span class="string">"webpack-dev-server"</span>  <span class="comment">//开发</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<h1 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h1><h3 id="安装babel"><a href="#安装babel" class="headerlink" title="安装babel"></a>安装babel</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @babel/core @babel/preset-env babel-loader -D  //@表示组， /中间模块</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建-babelrc"><a href="#创建-babelrc" class="headerlink" title="创建.babelrc"></a>创建.babelrc</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [<span class="string">"babel/preset-env"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// output 同级</span></span><br><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">	rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">      loader: [<span class="string">'babel-loader'</span>]</span><br><span class="line">      include: path.join(__dirname, <span class="string">'src'</span>),</span><br><span class="line">    	exclude: <span class="regexp">/node_modules/</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="生成环境"><a href="#生成环境" class="headerlink" title="生成环境"></a>生成环境</h1><h3 id="创建webpack-prod-js"><a href="#创建webpack-prod-js" class="headerlink" title="创建webpack.prod.js"></a>创建webpack.prod.js</h3><p>把webpack.config.js复制过来到webpack.prod.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)   <span class="comment">//引入node.js的path模块</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">	node: <span class="string">'development'</span>,   <span class="comment">// production</span></span><br><span class="line">	entry: path.join(__dirname, <span class="string">'src'</span>, <span class="string">'index.js'</span>),    <span class="comment">// __dirname是根目录</span></span><br><span class="line">	output: &#123;</span><br><span class="line">		filename: <span class="string">'bundle.[contenthash].js'</span>,   <span class="comment">//算出一个hash值，只要代码变hash值就变</span></span><br><span class="line">		path: path.join(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改config.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">build: <span class="string">"webpack --config webpack.prod.js"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="删除旧dist，运行"><a href="#删除旧dist，运行" class="headerlink" title="删除旧dist，运行"></a>删除旧dist，运行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
 
 
       
@@ -334,13 +353,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/10/08/排序与查找/">排序与查找</a></p>
+        <p><span>本文标题:</span><a href="/2021/01/27/webpack-babel用法/">webpack&amp;babel使用</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">赵新月 Xinyue</a></p>
-        <p><span>发布时间:</span>2019-10-08, 10:33:29</p>
-        <p><span>最后更新:</span>2019-10-08, 10:34:19</p>
+        <p><span>发布时间:</span>2021-01-27, 15:46:09</p>
+        <p><span>最后更新:</span>2021-01-27, 17:15:28</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/10/08/排序与查找/" title="排序与查找">http://yoursite.com/2019/10/08/排序与查找/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/10/08/排序与查找/　　作者: 赵新月 Xinyue" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2021/01/27/webpack-babel用法/" title="webpack&amp;babel使用">http://yoursite.com/2021/01/27/webpack-babel用法/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2021/01/27/webpack-babel用法/　　作者: 赵新月 Xinyue" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -352,16 +371,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/10/08/回溯法/">
-                    回溯法
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/10/05/排序算法/">
-                    排序算法
+                <a href="/2020/11/11/javaScript迭代器的含义与用法详解/">
+                    javaScript迭代器的含义与用法详解
                 </a>
             </div>
         
@@ -373,7 +386,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#员工年龄排序"><span class="toc-number">1.</span> <span class="toc-text">员工年龄排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#旋转数组的最小数字"><span class="toc-number">2.</span> <span class="toc-text">旋转数组的最小数字</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装webpack"><span class="toc-number">1.</span> <span class="toc-text">安装webpack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立src-index-js"><span class="toc-number">2.</span> <span class="toc-text">建立src/index.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立webpack-config-js"><span class="toc-number">3.</span> <span class="toc-text">建立webpack.config.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行-（配置webpack-json）"><span class="toc-number">4.</span> <span class="toc-text">运行 （配置webpack.json）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立src-index-html"><span class="toc-number">5.</span> <span class="toc-text">建立src/index.html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装插件"><span class="toc-number">6.</span> <span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置webpack-config-js"><span class="toc-number">7.</span> <span class="toc-text">配置webpack.config.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置webpack-json）"><span class="toc-number">8.</span> <span class="toc-text">配置webpack.json）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Babel"><span class="toc-number"></span> <span class="toc-text">Babel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装babel"><span class="toc-number">1.</span> <span class="toc-text">安装babel</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建-babelrc"><span class="toc-number">1.1.</span> <span class="toc-text">创建.babelrc</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack-config-js"><span class="toc-number">2.</span> <span class="toc-text">webpack.config.js</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生成环境"><span class="toc-number"></span> <span class="toc-text">生成环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建webpack-prod-js"><span class="toc-number">1.</span> <span class="toc-text">创建webpack.prod.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除旧dist，运行"><span class="toc-number">2.</span> <span class="toc-text">删除旧dist，运行</span></a></li></ol>
         
     </div>
     <style>
@@ -409,7 +422,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"排序与查找　| Dora Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"webpack&babel使用　| Dora Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -429,15 +442,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/10/08/回溯法/" title="上一篇: 回溯法">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/10/05/排序算法/" title="下一篇: 排序算法">
+            <a href="/2020/11/11/javaScript迭代器的含义与用法详解/" title="下一篇: javaScript迭代器的含义与用法详解">
                 <i class="fa fa-angle-right"></i>
             </a>
         
