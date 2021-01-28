@@ -310,6 +310,10 @@
 <p>看的回复 successful authenticated，说明连接成功。</p>
 <h3 id="在gitee上新建仓库后，进行如下配置"><a href="#在gitee上新建仓库后，进行如下配置" class="headerlink" title="在gitee上新建仓库后，进行如下配置"></a>在gitee上新建仓库后，进行如下配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "super_moon"</span><br><span class="line">git config --global user.email "xxxin_yue@163.com"</span><br></pre></td></tr></table></figure>
 
+<h4 id="已有仓库吗？"><a href="#已有仓库吗？" class="headerlink" title="已有仓库吗？"></a>已有仓库吗？</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd existing_git_repo</span><br><span class="line">git remote add origin https://gitee.com/xxxin_yue_z/vue_shop.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<h4 id="本地没有仓库"><a href="#本地没有仓库" class="headerlink" title="本地没有仓库"></a>本地没有仓库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mkdir vue_shop</span><br><span class="line">cd vue_shop</span><br><span class="line">git init</span><br><span class="line">touch README.md</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m "first commit"</span><br><span class="line">git remote add origin https://gitee.com/xxxin_yue_z/vue_shop.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
 
       
     </div>

@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Dora Blog">
 <meta property="og:description" content="登陆gitee，添加公钥查看公钥的方法： 1cat ~/.ssh/id_rsa.pub  在电脑终端授权1ssh -T git@gitee.com  看的回复 successful authenticated，说明连接成功。 在gitee上新建仓库后，进行如下配置12git config --global user.name &quot;super_moon&quot;git config --global user">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-28T11:26:12.829Z">
+<meta property="og:updated_time" content="2021-01-28T11:33:05.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初始化git远程仓库">
 <meta name="twitter:description" content="登陆gitee，添加公钥查看公钥的方法： 1cat ~/.ssh/id_rsa.pub  在电脑终端授权1ssh -T git@gitee.com  看的回复 successful authenticated，说明连接成功。 在gitee上新建仓库后，进行如下配置12git config --global user.name &quot;super_moon&quot;git config --global user">
@@ -315,6 +315,10 @@
 <p>看的回复 successful authenticated，说明连接成功。</p>
 <h3 id="在gitee上新建仓库后，进行如下配置"><a href="#在gitee上新建仓库后，进行如下配置" class="headerlink" title="在gitee上新建仓库后，进行如下配置"></a>在gitee上新建仓库后，进行如下配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "super_moon"</span><br><span class="line">git config --global user.email "xxxin_yue@163.com"</span><br></pre></td></tr></table></figure>
 
+<h4 id="已有仓库吗？"><a href="#已有仓库吗？" class="headerlink" title="已有仓库吗？"></a>已有仓库吗？</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd existing_git_repo</span><br><span class="line">git remote add origin https://gitee.com/xxxin_yue_z/vue_shop.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<h4 id="本地没有仓库"><a href="#本地没有仓库" class="headerlink" title="本地没有仓库"></a>本地没有仓库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mkdir vue_shop</span><br><span class="line">cd vue_shop</span><br><span class="line">git init</span><br><span class="line">touch README.md</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m "first commit"</span><br><span class="line">git remote add origin https://gitee.com/xxxin_yue_z/vue_shop.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -326,7 +330,7 @@
         <p><span>本文标题:</span><a href="/2021/01/28/初始化git远程仓库/">初始化git远程仓库</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">赵新月 Xinyue</a></p>
         <p><span>发布时间:</span>2021-01-28, 19:07:21</p>
-        <p><span>最后更新:</span>2021-01-28, 19:26:12</p>
+        <p><span>最后更新:</span>2021-01-28, 19:33:05</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2021/01/28/初始化git远程仓库/" title="初始化git远程仓库">http://yoursite.com/2021/01/28/初始化git远程仓库/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2021/01/28/初始化git远程仓库/　　作者: 赵新月 Xinyue" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -356,7 +360,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#登陆gitee，添加公钥"><span class="toc-number">1.</span> <span class="toc-text">登陆gitee，添加公钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在电脑终端授权"><span class="toc-number">2.</span> <span class="toc-text">在电脑终端授权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在gitee上新建仓库后，进行如下配置"><span class="toc-number">3.</span> <span class="toc-text">在gitee上新建仓库后，进行如下配置</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#登陆gitee，添加公钥"><span class="toc-number">1.</span> <span class="toc-text">登陆gitee，添加公钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在电脑终端授权"><span class="toc-number">2.</span> <span class="toc-text">在电脑终端授权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在gitee上新建仓库后，进行如下配置"><span class="toc-number">3.</span> <span class="toc-text">在gitee上新建仓库后，进行如下配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#已有仓库吗？"><span class="toc-number">3.1.</span> <span class="toc-text">已有仓库吗？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#本地没有仓库"><span class="toc-number">3.2.</span> <span class="toc-text">本地没有仓库</span></a></li></ol></li></ol>
         
     </div>
     <style>
